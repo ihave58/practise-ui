@@ -1,0 +1,42 @@
+.table {
+    h3 {
+
+    }
+
+    .tableWrapper {
+        .tableHeader {
+            .tableColumn {
+                background: #999999;
+                font-weight: bold;
+                cursor: pointer;
+                user-select: none;
+            }
+        }
+
+        .tableBody {
+
+        }
+
+        .tableRow {
+            display: flex;
+            border-bottom: 1px solid #cccccc;
+
+            &:hover {
+                background: #cccccc;
+
+                .tableColumn {
+                    background: #cccccc;
+                }
+            }
+        }
+
+        .tableColumn {
+            width: 100%;
+            padding: 2px 5px;
+
+            &.sorted {
+                background: #abade0;
+            }
+        }
+    }
+}

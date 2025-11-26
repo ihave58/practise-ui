@@ -1,0 +1,35 @@
+.deepLinkedTabs {
+    border: 1px solid #232323;
+
+    .tabsHeader {
+        border-bottom: 1px solid #999999;
+
+        .tabHeader {
+            display: inline-block;
+            padding: 5px 10px;
+            border-right: 1px solid #999999;
+
+            &:last-child {
+                border: none;
+            }
+
+            &:hover {
+                text-decoration: underline;
+            }
+
+            &.selected {
+                background: cornflowerblue;
+                color: #232323;
+            }
+        }
+    }
+
+    .tabsBody {
+        min-height: 20rem;
+        padding: 1rem;
+
+        .tabBody {
+
+        }
+    }
+}

@@ -1,0 +1,22 @@
+.app {
+    padding: 2rem;
+    text-align: center;
+    background-color: #f9f9f9;
+}
+
+.heading {
+    color: #333;
+    margin: 0 0 2rem 0;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    gap: 10px;
+}
+
+.gridCell {
+    border: 1px solid black;
+    color: #333333;
+    padding: 0.4rem;
+}
