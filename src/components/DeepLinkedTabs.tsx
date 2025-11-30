@@ -15,13 +15,7 @@ const DeepLinkedTabs: FC<DeepLinkedTabsProps> = (props) => {
     const tabLinkFromUrl = window.location.hash;
     const tabIndexFromUrl = tabs.findIndex(tab => tab.link === tabLinkFromUrl);
     const initialTabIndex = tabIndexFromUrl >= 0 ? tabIndexFromUrl : 0;
-
     const [selectedTabIndex, setSelectedTabIndex] = useState<number>(initialTabIndex);
-    const selectedTab = tabs[selectedTabIndex];
-
-    const handleTabSelectionChange = (tabIndex: number) => {
-        setSelectedTabIndex(tabIndex);
-    }
 
     const onHasChange = () => {
         const tabLinkFromUrl = window.location.hash;
@@ -32,7 +26,7 @@ const DeepLinkedTabs: FC<DeepLinkedTabsProps> = (props) => {
         console.log('onHasChange');
     }
 
-    console.log(selectedTab);
+    console.log(selectedTabIndex);
 
     useEffect(() => {
         window.addEventListener('hashchange', onHasChange);
@@ -48,7 +42,6 @@ const DeepLinkedTabs: FC<DeepLinkedTabsProps> = (props) => {
                         <a key={tab.title}
                            className={cx([styles.tabHeader, { [styles.selected]: selectedTabIndex === tabIndex }])}
                            href={tab.link}
-                           onClick={() => handleTabSelectionChange(tabIndex)}
                         >
                             {tab.title}
                         </a>
@@ -57,13 +50,26 @@ const DeepLinkedTabs: FC<DeepLinkedTabsProps> = (props) => {
             </div>
             <div className={styles.tabsBody}>
                 {
-                    <div key={selectedTab.title} className={styles.tabBody}>
-                        {selectedTab.body}
-                    </div>
+                    tabs.map((tab, tabIndex) => {
+                        const tabBodyStyles = [
+                            styles.tabBody,
+                            {
+                                [styles.active]: selectedTabIndex === tabIndex
+                            }
+                        ];
+
+                        return (
+                            <div
+                                key={tab.title}
+                                className={cx(tabBodyStyles)}>
+                                {tab.body}
+                            </div>
+                        )
+                    })
                 }
             </div>
         </div>
-    )
+    );
 }
 
 export default DeepLinkedTabs;

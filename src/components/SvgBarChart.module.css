@@ -1,0 +1,30 @@
+.svgBarChart {
+    padding: 1rem;
+    border: 1px solid #232323;
+    display: flex;
+    flex-direction: column;
+    user-select: none;
+
+    h3 {
+        margin: 0 0 1rem 0;
+    }
+
+    .xAxisTitle {
+
+    }
+
+    .yAxisTitle {
+
+    }
+
+    .bars {
+        transform: translate(20px, 190%) rotateX(180deg);
+    }
+
+    .bar {
+        &:hover {
+            cursor: pointer;
+            opacity: 0.8;
+        }
+    }
+}

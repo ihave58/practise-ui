@@ -4,8 +4,80 @@ import DeepLinkedTabs from './components/DeepLinkedTabs.tsx';
 import TodoList from './components/TodoList.tsx';
 import DirectoryTree from './components/DirectoryTree.tsx';
 import Table from './components/Table.tsx';
+import SvgBarChart from './components/SvgBarChart.tsx';
+import BarChart from './components/BarChart.tsx';
 
 import './index.css'
+
+type EmployeeData = {
+    id: string,
+    name: string,
+    ticketCount: number,
+    color: string
+};
+
+const mapToBarChartData = (employeesData: Array<EmployeeData> = []) => {
+    const xAxisData: Array<{ value: string, color: string }> = [];
+    const yAxisData: Array<number> = [];
+
+    employeesData.forEach(employeeData => {
+        xAxisData.push({
+            value: employeeData.name,
+            color: employeeData.color
+        });
+
+        yAxisData.push(employeeData.ticketCount)
+    });
+
+    return { xAxisData, yAxisData };
+}
+
+const EmployeesData: Array<EmployeeData> = [
+    {
+        id: 'employee1',
+        name: 'Employee 1',
+        ticketCount: 1,
+        color: '#3f888f'
+    },
+    {
+        id: 'employee2',
+        name: 'Employee 2',
+        ticketCount: 4,
+        color: '#8f3f76'
+    },
+    {
+        id: 'employee3',
+        name: 'Employee 3',
+        ticketCount: 6,
+        color: '#0b0c0b'
+    },
+    {
+        id: 'employee5',
+        name: 'Employee 5',
+        ticketCount: 14,
+        color: '#4aae0b'
+    },
+    {
+        id: 'employee6',
+        name: 'Employee 6',
+        ticketCount: 11,
+        color: '#e6bc51'
+    },
+    {
+        id: 'employee4',
+        name: 'Employee 4',
+        ticketCount: 10,
+        color: '#121fac'
+    },
+    {
+        id: 'employee7',
+        name: 'Employee 7',
+        ticketCount: 3,
+        color: '#f6065a'
+    }
+];
+
+const barChartData = mapToBarChartData(EmployeesData);
 
 createRoot(document.getElementById('root')!).render(
     <StrictMode>
@@ -199,7 +271,37 @@ createRoot(document.getElementById('root')!).render(
                     {
                         title: 'Tab 4',
                         link: '#/tab4',
-                        body: 'Body for Tab 4'
+                        body: <SvgBarChart
+                            title={'Employee Ticket Distribution'}
+                            xAxisTitle={'Employee'}
+                            yAxisTitle={'Ticket Count'}
+                            height={'200px'}
+                            width={'600px'}
+                            xAxis={{
+                                data: barChartData.xAxisData
+                            }}
+                            yAxis={barChartData.yAxisData}
+                        />
+                    },
+                    {
+                        title: 'Tab 5',
+                        link: '#/tab5',
+                        body: <BarChart
+                            title="Employee Ticket Distribution"
+                            xAxisTitle={'Employee'}
+                            yAxisTitle={'Ticket Count'}
+                            height={'200px'}
+                            width={'600px'}
+                            xAxis={{
+                                data: barChartData.xAxisData
+                            }}
+                            yAxis={barChartData.yAxisData}
+                        />
+                    },
+                    {
+                        title: 'Tab 6',
+                        link: '#/tab6',
+                        body: 'Tab 6'
                     }
                 ]}/>
         </div>

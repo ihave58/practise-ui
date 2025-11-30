@@ -29,7 +29,11 @@
         padding: 1rem;
 
         .tabBody {
+            display: none;
 
+            &.active {
+                display: block;
+            }
         }
     }
 }
